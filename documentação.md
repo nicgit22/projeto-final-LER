@@ -4,9 +4,18 @@ Este documento especifica as funcionalidades, restrições e regras de negócio 
 
 ---
 
-## 1. Briefing do Projeto
+### 1. Propósito
+otimizar a espera e atendimento de pacientes hospitalares
+
+### 1.2 Briefing do Projeto
 
 > **Cenário Atual:** *"No meu hospital, a ordem de chegada não é tudo. Quero implementar o Protocolo de Manchester. O paciente chega e a enfermeira dá uma cor: Vermelho (Emergência), Amarelo (Urgente) ou Verde (Pouco Urgente). Pacientes com mais de 60 anos sempre passam na frente do Verde, mesmo que tenham chegado depois."*
+
+### 1.3 Definições e Acrônimos
+- **SGT**: Sistema de Gestão de Tarefas
+- **RF**: Requisito Funcional
+- **RNF**: Requisito Não-Funcional
+- **Sprint**: Período de 2 semanas de desenvolvimento
 
 ---
 
