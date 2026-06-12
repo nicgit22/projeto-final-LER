@@ -12,53 +12,84 @@ while True:
     print("[3] Proximo paciente ")
     print("[4] Sair")
     
-    try:#tratamento de erros
-
-        resp = int(input("digite: "))
-    except ValueError:
-        print("Opcção invalida, digite apenas numeros do menu")
-        continue
+    
+    while True:
+        try:
+            resp = int(input("digite: "))
+            break
+        except ValueError:
+            print("digite valores válidos")
+        
+    
     #nova triagem
     if resp == 1:
         os.system('cls')
         print(texto_ascii)
-        try:#tratamento de erros
-            
+        
+        while True:
             nome = input("nome do paciente: ").strip()
-        except SyntaxError:
-            print("digite apenas o nome")
-            continue
-        try:
-            idade = int(input("idade do paciente: "))
-        except ValueError:
-            print("digite apenas a idade do paciente")
-        try:
-            sexo = input("sexo do paciente: ").strip()
-        except ValueError:
-            print("Se refira ao sexo do paciente com M, F ou N (não binario)")
-        try:
-            sintomas = input("sintomas resumidos: ").strip()
-        except ValueError:
-            print("digite os sintomas corretos")
+            if nome.isnumeric():
+                print("digite de maneira correta")
+            else:
+                break
 
-        #cores
+          
+        while True:
+            try:
+                idade = int((input("idade do paciente: ")))
+                break
+            except ValueError:
+                print("digite valores corretos")
+            
+            
+        while True:
+            sexo = input("sexo do paciente: ").strip().upper()
+
+                        # Verifica se o que foi digitado está entre as opções válidas
+            if sexo in ['M', 'F', 'N']:
+                break  # Sai do laço se a entrada for válida
+            else:
+                print("Entrada inválida! Por favor, se refira ao sexo do paciente com M, F ou N (não binário).")
+
+        # O código continua aqui com a variável 'sexo' garantidamente válida
+        print(f"Sexo registrado: {sexo}")        
+        sintomas = input("sintomas resumidos: ").strip()
+
+        # Menu de cores
         print("selecione o tipo de prioridade:")
         print("[1] Vermelho")
         print("[2] Amarelo")
         print("[3] Verde")
-        cor = int(input("selecine o tipo de prioridade: "))
-        #adiciona o peso das cores
+
+        while True:
+            try:
+                cor = int(input("selecione o tipo de prioridade: "))
+                if cor in [1, 2, 3]: # Garante que o número digitado seja válido
+                    break
+                print("Por favor, escolha uma opção válida (1, 2 ou 3).")
+            except ValueError:
+                print("digite valores corretos")
+
+        # adiciona o peso das cores
         if cor == 1:
-            cor = "vermelho"
+            cor = "Vermelho"
             peso_prioridade = 1
+
         elif cor == 2:
-            cor = "Laranja"
+            cor = "Amarelo" # Corrigido de Laranja para Amarelo
             peso_prioridade = 2
+
         elif cor == 3:
-            cor = "Verde"
-            peso_prioridade = 3
-            if cor == 3 and idade <= 60:
+            
+            if idade >= 60:
                 peso_prioridade = 3.50
+            else:
+                peso_prioridade = 3
+                
+            
+            cor = "Verde"
+
+        print(f"Cor selecionada: {cor} | Peso: {peso_prioridade}")
         #adiciona a lista de pacientes
         dados_do_paciente = (peso_prioridade, nome, idade, sexo, sintomas, cor)
         fila_hospitalar.append(dados_do_paciente)
