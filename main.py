@@ -82,7 +82,7 @@ while True:
         elif cor == 3:
             
             if idade >= 60:
-                peso_prioridade = 3.50
+                peso_prioridade = 2.50
             else:
                 peso_prioridade = 3
                 
@@ -97,18 +97,26 @@ while True:
         print(fila_hospitalar)
     #printa a lista
     if resp == 2:
-        if len(fila_hospitalar) >=1:    
-            print("="*50)
-            print("             Lista de Pacientes")
-            print("="*50)
-            print(fila_hospitalar)
-            print("="*50)
+        print("="*70)
+        print(f"{'LISTA DE PACIENTES NA FILA':^70}")
+        print("="*70)
+        
         if len(fila_hospitalar) == 0:
-            print("="*50)
-            print("             Lista de Pacientes")
-            print("="*50)
-            print("Não há pacientes na fila")
-            print("="*50) 
+            print(f"{'Não há pacientes na fila no momento.':^70}")
+        else:
+            # Mostra o cabeçalho das colunas
+            print(f"{'NOME':<25} | {'IDADE':<5} | {'SEXO':<5} | {'PRIORIDADE':<12}")
+            print("-"*70)
+            
+            # O truque está aqui: passamos por cada paciente, um por um
+            for paciente in fila_hospitalar:
+                # Desempacotamos os 6 elementos da tupla em variáveis
+                peso, nome, idade, sexo, sintomas, cor = paciente
+                
+                # Printamos cada um em uma linha formatada
+                print(f"{nome:<25} | {idade:<5} | {sexo:<5} | {cor:<12}")
+                
+        print("="*70)
 
     elif resp == 3:
         if len(fila_hospitalar) == 0:
