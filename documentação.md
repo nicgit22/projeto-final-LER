@@ -15,7 +15,7 @@ Otimizar o tempo de espera e o fluxo de atendimento de pacientes hospitalares at
 * **RNF:** Requisito Não-Funcional (Características de qualidade e restrições técnicas)
 * **RN:** Regra de Negócio (As leis do hospital que determinam o comportamento do sistema)
 * **CLI:** *Command Line Interface* (Interface de Linha de Comando / Terminal)
-* **DoD:** *Definition of Done* (Critérios de Aceitação para Conclusão)
+
 
 ---
 
@@ -85,7 +85,7 @@ A ordem de gravidade clínica estrita do hospital para fins de ordenação numé
 ### 📌 RN-002: Prioridade por Idade na Fila Verde
 Pacientes com **60 anos ou mais** que receberem a classificação **Verde** devem receber um peso intermediário (*Peso 2.5*). Isso faz com que eles sejam posicionados automaticamente à frente de todos os pacientes **Verdes Comuns** (Peso 3), independentemente de quem chegou primeiro.
 
-### 📌 RN-003: Soberania Clínica (Limite da Prioridade por Idade)
+### 📌 RN-003: Limite da Prioridade por Idade
 A prioridade por idade funciona apenas como criterion de desempate interno na cor Verde. Um idoso classificado como **Verde** (Peso 2.5) **nunca** poderá passar na frente de nenhum paciente classificado como **Amarelo** (Peso 2) ou **Vermelho** (Peso 1), garantindo que o risco clínico de morte tenha soberania sobre a idade.
 
 ---
@@ -108,16 +108,5 @@ O dicionário ou objeto que representará a entidade `Paciente` dentro da lista 
 * **sintomas:** `Texto` (Preenchimento opcional, texto livre limitado a 255 caracteres).
 * **cor_classificacao:** `Texto` (Obrigatório, limitado estritamente a: `"Vermelho"`, `"Amarelo"` ou `"Verde"`).
 * **peso_prioridade:** `Decimal / Float` (Calculado em tempo de inserção com base na cor e idade: `1`, `2`, `2.5` ou `3`).
-* **timestamp_chegada:** `Float / Datetime` (Momento exato gerado automaticamente pela biblioteca `time` ou `datetime` no cadastro do paciente, servindo como critério de desempate).
 
----
 
-## 9. Critérios de Aceitação Gerais (Definition of Done - DoD)
-
-Para que qualquer card de Requisito Funcional (RF) no Trello seja movido com segurança para a coluna **"Concluído"**, ele deve atender a todos os seguintes critérios:
-
-1. **Funcionalidade Plena:** O código executa o fluxo feliz sem falhas e cumpre a regra médica associada.
-2. **Tratamento à Prova de Falhas:** Os fluxos de exceção (Seção 4) correspondentes à tarefa foram codificados e testados manualmente com strings e números inválidos.
-3. **Validação de Tipos:** O código valida os tipos e limites de dados estabelecidos na modelagem do Paciente (Seção 8).
-4. **Código Limpo:** O código foi refatorado, as variáveis possuem nomes claros em português, e não há trechos redundantes ou comentários de teste (`# testando aqui`) esquecidos.
-5. **Fidelidade ao Escopo:** A implementação respeita as restrições da Seção 5, não adicionando persistência em arquivos ou bibliotecas de interface visual não solicitadas.
